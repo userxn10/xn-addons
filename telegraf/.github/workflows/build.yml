@@ -1,0 +1,24 @@
+name: Docker build and shellcheck
+
+on: [push, pull_request]
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: shellcheck
+        run: shellcheck telegraf/run.sh
+      - name: build docker files
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --test \
+            --all \
+            --target telegraf \
+            --docker-hub sabuto \
+            --docker-user sabuto \
+            --docker-password ${{ secrets.DOCKER_PASSWORD }}
