@@ -11,8 +11,7 @@ ARG BUILD_ARCH=amd64
 ARG TELEGRAF_VERSION
 
 # Setup base
-RUN \
-    apt-get update \
+RUN sed -i 's/main/main contrib non-free/' /etc/apt/sources.list && \
     && apt-get install -y --no-install-recommends \
         iputils-ping snmp procps lm-sensors smartmontools ipmitool snmp-mibs-downloader \
     && ARCH="${BUILD_ARCH}" \
