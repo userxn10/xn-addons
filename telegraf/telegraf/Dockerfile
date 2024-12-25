@@ -14,7 +14,7 @@ ARG TELEGRAF_VERSION
 RUN \
     apt-get update \
     && apt-get install -y --no-install-recommends \
-        iputils-ping snmp procps lm-sensors smartmontools ipmitool \
+        iputils-ping snmp procps lm-sensors smartmontools ipmitool snmp-mibs-downloader \
     && ARCH="${BUILD_ARCH}" \
     && if [ "${BUILD_ARCH}" = "aarch64" ]; then ARCH="arm64"; fi \
     && if [ "${BUILD_ARCH}" = "armv7" ]; then ARCH="armhf"; fi \
@@ -56,11 +56,11 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Sacrementus" \
+    maintainer="xn" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
-    org.opencontainers.image.vendor="Sacrementus's addons" \
-    org.opencontainers.image.authors="Sacrementus" \
+    org.opencontainers.image.vendor="xn's addons" \
+    org.opencontainers.image.authors="xn" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
